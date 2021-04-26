@@ -13,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup Version ID
+      run: |
+        VERSION=`git describe --tags --abbrev=0` || VERSION="0.0.0-SNAPSHOT-`git rev-parse --short HEAD`" ; echo "VERSION=$VERSION" >> $GITHUB_ENV
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -24,9 +27,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish
+      run: dotnet publish --no-build --configuration Release -o publish chia-rest-api
     - name: Upload chia-rest-api Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: chia-rest-api
-        path: /home/runner/work/chia-rest-api/chia-rest-api/chia-rest-api/bin/Debug/net5.0/publish/
+        name: chia-rest-api-${{ env.VERSION }}
+        path: publish
