@@ -9,13 +9,13 @@ For communication the private_full_node.crt and private_full_node.key files are 
 
 # Prerequisites
 ASP.NET Core 5.0 (Runtime / SDK)
+
 Linux OS with curl
+
 Running [chia-blockchain](https://github.com/Chia-Network/chia-blockchain)
 
 # Getting started
 WIP
-
-
 
 # license
 BSD-3-Clause License See [LICENSE](https://github.com/Godfather95/chia-rest-api/blob/main/LICENSE)
